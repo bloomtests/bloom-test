@@ -4,6 +4,27 @@ const insertContact = async data => {
     return await ContactSchema.create(data)
 }
 
+const defineFilters = query => {
+    if (Object.keys(query).length > 0) {
+        let filters = new Array()
+
+        Object.keys(query).map(key => {
+            filters.push({ [key]: new RegExp(query[key]) })
+        })
+
+        return { $or: filters, excluded: false }
+    } else {
+        return { excluded: false }
+    }
+}
+
+const getContacts = async filters => {
+    return await ContactSchema.find(filters)
+}
+
+
 module.exports = {
-    insertContact
+    insertContact,
+    defineFilters,
+    getContacts
 }

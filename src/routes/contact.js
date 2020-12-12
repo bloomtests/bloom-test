@@ -3,5 +3,6 @@ const router = express.Router()
 const Contact = require('./../controllers/contact')
 
 router.post('/contact', Contact.createContact)
+router.get('/contacts', Contact.getContacts)
 
 module.exports = router
