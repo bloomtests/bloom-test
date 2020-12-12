@@ -1,0 +1,23 @@
+{
+  "name": "bloom-test",
+  "version": "1.0.0",
+  "description": "Teste Node.js Bloom",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hppod/bloom-test.git"
+  },
+  "keywords": [
+    "nodejs",
+    "bloom"
+  ],
+  "author": "hppod",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hppod/bloom-test/issues"
+  },
+  "homepage": "https://github.com/hppod/bloom-test#readme"
+}
