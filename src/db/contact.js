@@ -16,6 +16,16 @@ const defineFilters = query => {
     }
 }
 
+const removeExcluded = body => {
+    Object.keys(body).forEach(key => {
+        if (key === 'excluded') {
+            delete body['excluded']
+        }
+    })
+
+    return body
+}
+
 const getContacts = async filters => {
     return await ContactSchema.find(filters)
 }
@@ -25,11 +35,11 @@ const getContact = async id => {
 }
 
 const updateContact = async (id, content) => {
-    return await ContactSchema.updateOne({ _id: id }, { $set: content })
+    return await ContactSchema.updateOne({ _id: id, excluded: false }, { $set: content })
 }
 
 const deleteContact = async id => {
-    return await ContactSchema.updateOne({ _id: id }, { $set: { excluded: true } })
+    return await ContactSchema.updateOne({ _id: id, excluded: false }, { $set: { excluded: true } })
 }
 
 module.exports = {
@@ -38,5 +48,6 @@ module.exports = {
     getContacts,
     getContact,
     updateContact,
-    deleteContact
+    deleteContact,
+    removeExcluded
 }
