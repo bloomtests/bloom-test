@@ -15,4 +15,4 @@ app.use('/api', ContactRoutes)
 app.use('*', (req, res) => res.send('API not found'))
 app.listen(PORT, (_) => console.log(`API listening on PORT ${PORT}`))
 
-module.exports = app
+module.exports = { app }
