@@ -57,5 +57,30 @@ class Contact {
 
     }
 
+    updateContact(req, res) {
+        const { id } = req.params
+        const body = req.body
+
+        try {
+            db.updateContact(id, body)
+                .then(() => res.status(200).send({ message: 'Contact updated successfully' }))
+                .catch(err => res.status(400).send({ message: 'There was a problem updating the contact', error: err }))
+        } catch (e) {
+            res.status(500).send({ message: 'We were unable to process your request at this time', error: e })
+        }
+    }
+
+    deleteContact(req, res) {
+        const { id } = req.params
+
+        try {
+            db.deleteContact(id)
+                .then(() => res.status(200).send({ message: 'Contact excluded successfully' }))
+                .catch(err => res.status(400).send({ message: 'There was a problem deleting the contact', error: err }))
+        } catch (e) {
+            res.status(500).send({ message: 'We were unable to process your request at this time', error: e })
+        }
+    }
+
 }
 module.exports = new Contact()

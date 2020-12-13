@@ -24,9 +24,19 @@ const getContact = async id => {
     return await ContactSchema.findById(id)
 }
 
+const updateContact = async (id, content) => {
+    return await ContactSchema.updateOne({ _id: id }, { $set: content })
+}
+
+const deleteContact = async id => {
+    return await ContactSchema.updateOne({ _id: id }, { $set: { excluded: true } })
+}
+
 module.exports = {
     insertContact,
     defineFilters,
     getContacts,
-    getContact
+    getContact,
+    updateContact,
+    deleteContact
 }
