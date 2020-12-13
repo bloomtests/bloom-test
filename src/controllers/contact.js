@@ -1,5 +1,6 @@
 const db = require('./../db/contact')
 const ErrorHandler = require('./error-handler')
+const { getWeatherInfo } = require('./../api/weather')
 
 class Contact {
 
@@ -28,7 +29,28 @@ class Contact {
                         res.status(200).send({ message: `${result.length} records found for your search criteria`, data: result })
                     }
                 })
-                .catch(err => res.status(400).send({ message: 'We were unable to perform your search at this time. Check that the options have been filled out correctly.' }))
+                .catch(() => res.status(400).send({ message: 'We were unable to perform your search at this time. Check that the options have been filled out correctly.' }))
+        } catch (e) {
+            res.status(500).send({ message: 'We were unable to process your request at this time', error: e })
+        }
+
+    }
+
+    getContact(req, res) {
+        const { id } = req.params
+
+        try {
+            db.getContact(id)
+                .then(result => {
+                    if (!result) {
+                        res.status(204).send({ message: 'No records were found that match your search criteria' })
+                    } else {
+                        const city = result['address']['city']
+                        getWeatherInfo(city)
+                            .then(message => res.status(200).send({ contact: result, message: message }))
+                    }
+                })
+                .catch(() => res.status(400).send({ message: 'We were unable to perform your search at this time.' }))
         } catch (e) {
             res.status(500).send({ message: 'We were unable to process your request at this time', error: e })
         }
