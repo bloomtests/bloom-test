@@ -18,36 +18,9 @@ services:
       - DB_PASS=$DB_PASS
     ports:
       - "3000:3000"
-    links:
-      - db
     volumes:
       - .:/home/node/app
       - node_modules:/home/node/app/node_modules
-    networks:
-      - app-network
-    command: ./wait-for.sh db:27017 -- /home/node/app/node_modules/.bin/nodemon --legacy-watch index.js
-  db:
-    image: mongo:4.1.8-xenial
-    container_name: db
-    restart: unless-stopped
-    env_file: .env
-    environment: 
-      - MONGO_INITDB_ROOT_USERNAME=$DB_USER
-      - MONGO_INITDB_ROOT_PASSWORD=$DB_PASS
-      - MONGO_INITDB_ROOT_HOST=$DB_HOST
-      - MONGO_INITDB_ROOT_PORT=$DB_PORT
-      - MONGO_INITDB_ROOT_NAME=$DB_NAME
-    ports:
-      - "27017:27017"
-    volumes:
-      - type: bind
-        source: ./data/db
-        target: /data/db
-    networks: 
-      - app-network
-networks:
-  app-network:
-    driver: bridge
+    command: /home/node/app/node_modules/.bin/nodemon --legacy-watch index.js
 volumes:
-  dbdata:
   node_modules:
