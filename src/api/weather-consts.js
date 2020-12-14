@@ -4,6 +4,7 @@ const HG_WEATHER_URL = 'https://api.hgbrasil.com/weather'
 const CONDITION_MESSAGES = {
     '<18': 'Gostaria de um chocolate quente?',
     '>30': {
+        '0': 'Não foi possível dar uma sugestão',
         '9': 'O que acha de tomarmos um sorvete hoje?',
         '11': 'O que acha de tomarmos um sorvete hoje?',
         '12': 'O que acha de tomarmos um sorvete hoje?',
@@ -15,6 +16,7 @@ const CONDITION_MESSAGES = {
         '48': 'Não foi possível concluir a busca pois o serviço está indisponível, portanto, não conseguimos te dar sugestões'
     },
     '<30': {
+        '0': 'Não foi possível dar uma sugestão',
         '9': 'Acho que o dia está perfeito para vermos um filme, que tal?',
         '11': 'Acho que o dia está perfeito para vermos um filme, que tal?',
         '12': 'Acho que o dia está perfeito para vermos um filme, que tal?',

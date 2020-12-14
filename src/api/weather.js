@@ -14,6 +14,14 @@ const fetchWeatherInfo = async city => {
     return await response.json()
 }
 
+const conditionCode = condition => {
+    if (condition in Object.keys(CONDITION_MESSAGES['<30']) || condition in Object.keys(CONDITION_MESSAGES['>30'])) {
+        return condition
+    } else {
+        return '0'
+    }
+}
+
 const getWeatherInfo = async city => {
     const response = await fetchWeatherInfo(city)
     let message = null
@@ -22,7 +30,7 @@ const getWeatherInfo = async city => {
         message = 'Não foi possível encontrar sua cidade, portanto, não conseguimos te dar sugestões'
     } else {
         const temp = response['results']['temp']
-        const condition = response['results']['condition_code']
+        const condition = conditionCode(response['results']['condition_code'])
 
         if (condition !== undefined) {
             if (temp <= 18) {
