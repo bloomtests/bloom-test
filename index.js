@@ -10,9 +10,9 @@ app.use(express.text())
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json({ type: 'application/json' }))
 
-app.get('/', (req, res) => res.send('API listening'))
+app.get('/', (req, res) => res.send('Bloom test API listening'))
 app.use('/api', ContactRoutes)
 app.use('*', (req, res) => res.send('API not found'))
-app.listen(PORT, (_) => console.log(`API listening on PORT ${PORT}`))
+app.listen(PORT, (_) => console.log(`Bloom test API listening on PORT ${PORT}`))
 
 module.exports = { app }

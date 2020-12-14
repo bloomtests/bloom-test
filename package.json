@@ -6,7 +6,7 @@
   "scripts": {
     "build-docker": "docker build -t bloom-dev -f Dockerfile.dev . && docker build -t bloom-test -f Dockerfile.test .",
     "test-docker": "docker run --rm bloom-test",
-    "up-docker": "docker-compose up -d",
+    "up-docker": "docker-compose up -d --build",
     "down-docker": "docker-compose down",
     "test": "mocha test --exit"
   },

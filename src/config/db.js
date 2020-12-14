@@ -13,7 +13,7 @@ const options = {
     reconnectInterval: 500,
     connectTimeoutMS: 1000
 }
-const URI_DATABASE = `mongodb://${DB_USER}:${DB_PASS}@${DB_HOST}:${DB_PORT}/${DB_NAME}?authSource=admin`
+const URI_DATABASE = `mongodb://${DB_USER}:${DB_PASS}@${DB_HOST}:${DB_PORT}/${DB_NAME}`
 
 let db = mongoose.connect(URI_DATABASE, options)
     .then(() => console.log('Database connected'))
