@@ -13,7 +13,8 @@ const options = {
     reconnectInterval: 500,
     connectTimeoutMS: 1000
 }
-const URI_DATABASE = `mongodb://${DB_USER}:${DB_PASS}@${DB_HOST}:${DB_PORT}/${DB_NAME}`
+// const URI_DATABASE = `mongodb://${DB_USER}:${DB_PASS}@${DB_HOST}:${DB_PORT}/${DB_NAME}`
+const URI_DATABASE = "mongodb://uktqt6mnepolhq06nr7b:F8pooGYS3OdiNancoa1w@n1-c2-mongodb-clevercloud-customers.services.clever-cloud.com:27017,n2-c2-mongodb-clevercloud-customers.services.clever-cloud.com:27017/bhr3fwwgpbgn2de?replicaSet=rs0"
 
 let db = mongoose.connect(URI_DATABASE, options)
     .then(() => console.log('Database connected'))
